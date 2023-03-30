@@ -1,0 +1,36 @@
+name: PlayerTeleport
+version: '${project.version}'
+main: dev.alexbright.playerteleport.PlayerTeleport
+api-version: 1.19
+author: Turbocharger
+commands:
+  playertp:
+    description: Teleports to specified teleport point
+    aliases: [ptp, pteleport]
+    permission: playerteleport.basic
+  settp:
+    description: Sets new teleport at current location
+    aliases: [setteleport, stp]
+    permission: playerteleport.basic
+  updatetp:
+    description: Updates existing teleport at current location
+    aliases: [updateteleport, utp]
+    permission: playerteleport.basic
+
+permissions:
+  playerteleport.*:
+    description: Grants all permissions for PlayerTeleport
+    default: op
+    children:
+      playerteleport.tp: true
+      playerteleport.global: true
+      playerteleport.others: true
+  playerteleport.basic:
+    description: Grants basic functionality for PlayerTeleport
+    default: true
+  playerteleport.global:
+    description: Grants ability to set global teleports
+    default: op
+  playerteleport.others:
+    description: Grants ability to teleport to other player points
+    default: op
