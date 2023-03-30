@@ -15,7 +15,7 @@ public final class PlayerTeleport extends JavaPlugin {
 
     private static PlayerTeleport instance;
     private static ConfigFile data;
-    public static String prefix = ChatColor.AQUA + "[PlayerTeleport] " + ChatColor.WHITE;
+    public static String prefix = ChatColor.GRAY + "[PlayerTeleport] " + ChatColor.WHITE;
 
     @Override
     public void onEnable() {
