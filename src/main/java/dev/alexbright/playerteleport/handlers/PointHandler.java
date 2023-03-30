@@ -7,6 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PointHandler {
@@ -42,7 +43,24 @@ public class PointHandler {
             p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Teleport point '" + name + "' already exists.");
             return;
         }
-        if (!PlayerHandler.playerExists())
+        if (!PlayerHandler.playerExists(p)) {
+            if (!PlayerHandler.addPlayer(p)) {
+                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred. Please try again...");
+                return;
+            }
+            Point point = new Point(name, p.getLocation());
+            ConfigurationSection configSection = data.getConfig().getConfigurationSection("players." + uuid + ".points");
+            configSection.createSection(name);
+            configSection = configSection.getConfigurationSection(name);
+            configSection.set("world", location.getWorld().getName());
+            List<Integer> coordsList = Arrays.asList(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+            configSection.set("coords", coordsList);
+            data.save();
+        }
+    }
+
+    public static void deletePoint(Player p, String name) {
+
     }
 
 }

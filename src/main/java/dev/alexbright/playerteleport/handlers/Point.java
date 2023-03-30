@@ -9,6 +9,11 @@ public class Point {
     private String name;
     private Location location;
 
+    public Point(String name, Location location) {
+        this.name = name;
+        this.location = location;
+    }
+
     public Point(String name, String world, int x, int y, int z) {
         this.name = name;
         this.location = new Location(Bukkit.getWorld(world), x, y, z);

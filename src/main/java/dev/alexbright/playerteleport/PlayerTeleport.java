@@ -1,6 +1,9 @@
 package dev.alexbright.playerteleport;
 
-import dev.alexbright.playerteleport.commands.CommandHandler;
+import dev.alexbright.playerteleport.commands.DeleteCommand;
+import dev.alexbright.playerteleport.commands.SetCommand;
+import dev.alexbright.playerteleport.commands.TeleportCommand;
+import dev.alexbright.playerteleport.commands.UpdateCommand;
 import dev.alexbright.playerteleport.handlers.ConfigFile;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,12 +20,14 @@ public final class PlayerTeleport extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        getCommand("playertp").setExecutor(new CommandHandler());
+        getCommand("playertp").setExecutor(new TeleportCommand());
         getCommand("playertp").setAliases(Arrays.asList("ptp", "pteleport"));
-        getCommand("settp").setExecutor(new CommandHandler());
+        getCommand("settp").setExecutor(new SetCommand());
         getCommand("settp").setAliases(Arrays.asList("setteleport", "stp"));
-        getCommand("updatetp").setExecutor(new CommandHandler());
+        getCommand("updatetp").setExecutor(new UpdateCommand());
         getCommand("updatetp").setAliases(Arrays.asList("updateteleport", "utp"));
+        getCommand("deletetp").setExecutor(new DeleteCommand());
+        getCommand("deletetp").setAliases(Arrays.asList("deleteteleport", "deltp"));
         data = new ConfigFile("data.yml");
         if (!data.getConfig().contains("players")) {
             data.getConfig().createSection("players");
