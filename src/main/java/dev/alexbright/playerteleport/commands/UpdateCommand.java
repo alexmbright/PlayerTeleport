@@ -25,7 +25,7 @@ public class UpdateCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if (args.length == 0) {
-            p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Please specify a point.");
+            p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Please specify a point");
             p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Usage: /" + label.toLowerCase() + " <point name>");
             return false;
         }
@@ -34,17 +34,16 @@ public class UpdateCommand implements CommandExecutor {
             String reqName = args[0].toLowerCase();
             HashMap<String, Location> points = PointHandler.getPoints(p);
             if (!points.containsKey(reqName)) {
-                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Teleport point " + ChatColor.ITALIC + reqName + ChatColor.RESET + ChatColor.RED + " not found.");
-                p.sendMessage(PlayerTeleport.prefix + "You are attempting to update an existing point.");
+                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.RED + " not found");
                 p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "To set a new point, use /settp <point name>");
                 return false;
             }
             Location point = points.get(reqName);
             if (!PointHandler.setPoint(p, reqName, p.getLocation(), true)) {
-                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred... please try again.");
+                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred... please try again");
                 return false;
             }
-            p.sendMessage(PlayerTeleport.prefix + ChatColor.GREEN + "Successfully updated teleport point " + ChatColor.ITALIC + reqName + ChatColor.RESET + ChatColor.GREEN + " to current location.");
+            p.sendMessage(PlayerTeleport.prefix + ChatColor.GREEN + "Updated teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.GREEN + " to current location");
         }
 
         return true;

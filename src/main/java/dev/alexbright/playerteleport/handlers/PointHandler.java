@@ -23,8 +23,8 @@ public class PointHandler {
             ConfigurationSection configPoints = data.getConfig().getConfigurationSection("players." + uuid + ".points");
             for (String pointName : configPoints.getKeys(false)) {
                 String world = configPoints.getConfigurationSection(pointName).getString("world");
-                List<Integer> coords = configPoints.getConfigurationSection(pointName).getIntegerList("coords");
-                Location location = new Location(Bukkit.getWorld(world), coords.get(0), coords.get(1), coords.get(2));
+                List<Float> coords = configPoints.getConfigurationSection(pointName).getFloatList("coords");
+                Location location = new Location(Bukkit.getWorld(world), coords.get(0), coords.get(1), coords.get(2), coords.get(3), 0);
                 points.put(pointName, location);
             }
         }
@@ -48,7 +48,7 @@ public class PointHandler {
         // add point details
         configSection = configSection.getConfigurationSection(name);
         configSection.set("world", location.getWorld().getName());
-        List<Integer> coordsList = Arrays.asList(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+        List<Double> coordsList = Arrays.asList(location.getX(), location.getY(), location.getZ(), (double)location.getYaw());
         configSection.set("coords", coordsList);
         data.save();
 
@@ -64,6 +64,8 @@ public class PointHandler {
         ConfigurationSection configSection = data.getConfig().getConfigurationSection("players." + uuid + ".points");
         configSection.set(name, null);
         data.save();
+
+        if (getPoints(p).isEmpty()) return PlayerHandler.deletePlayer(p);
         return true;
     }
 

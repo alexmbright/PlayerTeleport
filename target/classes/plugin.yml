@@ -1,5 +1,5 @@
 name: PlayerTeleport
-version: '1.0-SNAPSHOT'
+version: '1.0.0'
 main: dev.alexbright.playerteleport.PlayerTeleport
 api-version: 1.19
 author: Turbocharger

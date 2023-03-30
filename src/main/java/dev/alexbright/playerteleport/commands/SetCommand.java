@@ -25,7 +25,7 @@ public class SetCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if (args.length == 0) {
-            p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Please specify a name.");
+            p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Please specify a name");
             p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Usage: /" + label.toLowerCase() + " <point name>");
             return false;
         }
@@ -34,16 +34,16 @@ public class SetCommand implements CommandExecutor {
             String reqName = args[0].toLowerCase();
             HashMap<String, Location> points = PointHandler.getPoints(p);
             if (PointHandler.getPoints(p).containsKey(reqName)) {
-                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Teleport point " + ChatColor.ITALIC + reqName + ChatColor.RESET + ChatColor.RED + " already exists...");
+                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.RED + " already exists...");
                 p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "To update, use /updatetp <point name>");
                 return false;
             }
             Location point = points.get(reqName);
             if (!PointHandler.setPoint(p, reqName, p.getLocation(), false)) {
-                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred... please try again.");
+                p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred... please try again");
                 return false;
             }
-            p.sendMessage(PlayerTeleport.prefix + ChatColor.GREEN + "Successfully set teleport point " + ChatColor.ITALIC + reqName + ChatColor.RESET + ChatColor.GREEN + " at current location.");
+            p.sendMessage(PlayerTeleport.prefix + ChatColor.GREEN + "Set teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.GREEN + " at current location");
         }
 
         return true;
