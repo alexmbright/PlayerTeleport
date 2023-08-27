@@ -20,7 +20,6 @@ commands:
     description: Deletes existing teleport by name
     aliases: [deleteteleport, deltp]
     permission: playerteleport.basic
-
 permissions:
   playerteleport.*:
     description: Grants all permissions for PlayerTeleport

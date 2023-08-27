@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PointHandler {
 
-    private static ConfigFile data = PlayerTeleport.getData();
+    private static final ConfigFile data = PlayerTeleport.getData();
 
     public static HashMap<String, Location> getPoints(Player p) {
         HashMap<String, Location> points = new HashMap<>();

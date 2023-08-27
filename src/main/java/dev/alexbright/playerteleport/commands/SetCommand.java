@@ -2,6 +2,8 @@ package dev.alexbright.playerteleport.commands;
 
 import dev.alexbright.playerteleport.PlayerTeleport;
 import dev.alexbright.playerteleport.handlers.PointHandler;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -43,7 +45,8 @@ public class SetCommand implements CommandExecutor {
                 p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred... please try again");
                 return false;
             }
-            p.sendMessage(PlayerTeleport.prefix + ChatColor.GREEN + "Set teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.GREEN + " at current location");
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN + "Set teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.GREEN + " at current location"));
+            //p.sendMessage(PlayerTeleport.prefix + ChatColor.GREEN + "Set teleport point " + ChatColor.BOLD + reqName + ChatColor.RESET + ChatColor.GREEN + " at current location");
         }
 
         return true;

@@ -3,6 +3,8 @@ package dev.alexbright.playerteleport.commands;
 import dev.alexbright.playerteleport.PlayerTeleport;
 import dev.alexbright.playerteleport.handlers.PlayerHandler;
 import dev.alexbright.playerteleport.handlers.PointHandler;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -42,6 +44,7 @@ public class TeleportCommand implements CommandExecutor {
                             ", " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ() + ")");
                 }
                 p.sendMessage(PlayerTeleport.prefix + ChatColor.YELLOW + ChatColor.ITALIC + "To visit a point, use /" + label.toLowerCase() + " <point name>");
+                p.sendMessage(PlayerTeleport.prefix + ChatColor.GRAY + "Developed with " + ChatColor.LIGHT_PURPLE + "❤ " + ChatColor.GRAY + "by AlexTurbo");
             }
             return true;
         }
@@ -62,7 +65,8 @@ public class TeleportCommand implements CommandExecutor {
                 p.sendMessage(PlayerTeleport.prefix + ChatColor.RED + "Unknown error occurred... please try again");
                 return false;
             }
-            p.sendMessage(PlayerTeleport.prefix + ChatColor.YELLOW + "Teleported to " + ChatColor.BOLD + reqName);
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.YELLOW + "Teleported to " + ChatColor.BOLD + reqName));
+            //p.sendMessage(PlayerTeleport.prefix + ChatColor.YELLOW + "Teleported to " + ChatColor.BOLD + reqName);
         }
 
         return false;
